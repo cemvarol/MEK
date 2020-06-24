@@ -1,3 +1,5 @@
+# This is for my nephew, not a course content :)
+
 az group create --name ConRG --location eastus
 
 az container create --resource-group ConRG --name cemocon --image index.docker.io/cemvarol/aci:mek --dns-name-label cvaz061904mek --ports 80
