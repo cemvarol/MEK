@@ -1,0 +1,14 @@
+a=$(az ad signed-in-user show --query userPrincipalName)
+A=$(echo "$a" | sed -e 's/\(.*\)/\L\1/')
+B=${A:$(echo `expr index "$A" @`)}
+C=${B:: -24}
+D=$(echo "$C"aci01)
+RG=ACI
+L=eastus
+
+
+az group create --name $RG --location $L
+
+az container create --resource-group $RG --name cemsaci --image index.docker.io/cemvarol/aci:01 --dns-name-label $D --ports 80
+
+az container show --resource-group $RG --name cemsaci --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" --out table
