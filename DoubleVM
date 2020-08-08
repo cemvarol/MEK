@@ -13,6 +13,8 @@ AP="10.207.0.0/16"
 SN01="10.207.1.0/24"
 user=cem
 pass=1q2w3e4r5t6y*
+size1=standard_B2ms
+size2=standard_D4s_v3
 
 az group create -n $RG -l $L
 
@@ -30,5 +32,5 @@ export SUBNETN=$(az network vnet subnet show --resource-group $RG --vnet-name $V
 
 az network vnet subnet update -g $RG --vnet-name $VNet -n $SUBNETN --network-security-group $Nsg
 
-az vm create --resource-group $RG -n $VM -l $L --image Win2019DataCenter --admin-username $user --admin-password $pass --size standard_D4s_v3 --subnet $SUBNETID --boot-diagnostics-storage $D --license-type Windows_Server --nsg ""
-az vm create --resource-group $RG -n $VM2 -l $L --image Win2019DataCenter --admin-username $user --admin-password $pass --size standard_D4s_v3 --subnet $SUBNETID --boot-diagnostics-storage $D --license-type Windows_Server --nsg ""
+az vm create --resource-group $RG -n $VM -l $L --image Win2019DataCenter --admin-username $user --admin-password $pass --size $size1 --subnet $SUBNETID --boot-diagnostics-storage $D --license-type Windows_Server --nsg ""
+az vm create --resource-group $RG -n $VM2 -l $L --image Win2019DataCenter --admin-username $user --admin-password $pass --size $size1 --subnet $SUBNETID --boot-diagnostics-storage $D --license-type Windows_Server --nsg ""
